@@ -1,0 +1,33 @@
+/* Text Colors */
+.text-white{
+    color: #fff !important;
+}
+
+.text-white label{
+    color: #fff !important;
+}
+
+.text-white li{
+    color: #fff !important;
+}
+
+
+/* Text Styles */
+.text-bold{
+    font-weight: bold !important;
+}
+
+
+/* Background COlor */
+.bg-primary{
+    background-color: #0a1754 !important;
+}
+.bg-white{
+    background-color: #ffffff !important;
+}
+
+
+/* Padding */
+.p-20{
+    padding: 20px !important;
+}
