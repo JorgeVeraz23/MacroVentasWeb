@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 
 const drawerWidth = 240;
@@ -57,6 +58,18 @@ const MainLayout = () => {
             <TextFieldsIcon />
           </ListItemIcon>
           <ListItemText primary="Crear Campo" />
+        </ListItemButton>
+        <ListItemButton onClick={() => navigate('/create-client')}>
+          <ListItemIcon>
+            <SupportAgentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Crear Cliente" />
+        </ListItemButton>
+        <ListItemButton onClick={() => navigate('/mostrar-client')}>
+          <ListItemIcon>
+            <SupportAgentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Mostrar Cliente" />
         </ListItemButton>
       </List>
     </div>

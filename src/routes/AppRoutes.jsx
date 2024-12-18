@@ -15,6 +15,8 @@ import CreateFormGroupPage from '../pages/DynamicFormPages/CreateFormGroupPage'
 import CreateFormFieldPage from '../pages/DynamicFormPages/CreateFormFieldPage'
 import FormResponsesDisplay from '../pages/DynamicFormPages/FormResponsePage'
 import FilledFormSelector from '../pages/DynamicFormPages/FilledFormSelectorPage';
+import CreateClientePage from '../pages/DynamicFormPages/ClientePages/CreateClientePage'
+import MostrarClientePage from "../pages/DynamicFormPages/ClientePages/MostrarClientePage"
 
 const AppRoutes = () => {
   return (
@@ -29,6 +31,8 @@ const AppRoutes = () => {
           <Route path='create-form-page' element={<CreateFormPage/>} />
           <Route path='create-form-group' element={<CreateFormGroupPage />} />
           <Route path='create-form-field' element={<CreateFormFieldPage />} />
+          <Route path='create-client' element={<CreateClientePage />} />
+          <Route path='mostrar-client' element={<MostrarClientePage />} />
         </Route>
       </Routes>
     </Router>
