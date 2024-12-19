@@ -30,6 +30,9 @@ import SelectorCategoriaProductoReducer from "./slice/Selector/SelectorCategoria
 //Usuario
 import SelectorUsuarioReducer from "./slice/Usuario/SelectorUsuarioSlice";
 
+//Venta
+import CreateVentaReducer from "./slice/Venta/CreateVentaSlice";
+
 
 export const store = configureStore({
     reducer: {
@@ -52,6 +55,7 @@ export const store = configureStore({
         selectorProducto: SelectorProductoReducer,
         selectorCategoriaProducto: SelectorCategoriaProductoReducer,
         selectorUsuario: SelectorUsuarioReducer,
+        createVenta: CreateVentaReducer,
     },
 });
 

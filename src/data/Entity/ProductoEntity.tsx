@@ -20,3 +20,9 @@ export type ShowProductoEntity = {
     nombreCategoriaProducto: number,
 }
 
+export type ProductoDataEntity = {
+    stock: number,
+    precio: number,
+    subtotal: number,
+}
+

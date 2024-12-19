@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
 import ClienteRepositoryImpl from "../../data/repositoryImpl/ClienteRepositoryImpl";
 import { CreateClienteEntity, EditarClienteEntity, ShowClienteEntity } from "data/Entity/ClienteEntity";
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { KeyValueEntity, SelectorEntity } from "data/Entity/KeyValueEntity";
 
 const repository = new ClienteRepositoryImpl();
 
@@ -21,7 +21,7 @@ export const getAllCliente = createAsyncThunk<ShowClienteEntity[], void, {reject
 );
 
 
-export const selectorCliente = createAsyncThunk<KeyValueEntity[], void, {rejectValue: string}>(
+export const selectorCliente = createAsyncThunk<SelectorEntity[], void, {rejectValue: string}>(
     "cliente/SelectorCliente",
     async(data, thunkAPI) => {
         try{

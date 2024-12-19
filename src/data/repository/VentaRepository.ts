@@ -6,7 +6,7 @@ export default interface IVentaRepository {
     // getAllVenta(): Promise<MostrarVenta[]>;
     // // selectorProducto(): Promise<KeyValueEntity[]>;
     // // getProductoById(id: number): Promise<EditarProductoEntity>;
-    // createProducto(data: CreateVenta): Promise<ApiResponse>;
+    createVenta(data: CreateVenta): Promise<ApiResponse>;
     // // editProducto(data: EditarProductoEntity): Promise<ApiResponse>;
     // deleteProducto(id: number): Promise<ApiResponse>;
 }

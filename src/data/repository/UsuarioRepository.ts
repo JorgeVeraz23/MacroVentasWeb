@@ -1,8 +1,7 @@
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
-// import { CreateProductoEntity, EditarProductoEntity, ShowProductoEntity } from "../Entity/ProductoEntity";
+import { SelectorEntity } from "data/Entity/KeyValueEntity";
 
 export default interface IUsuarioRepository {
-    selectorUsuario(): Promise<KeyValueEntity[]>;
+    selectorUsuario(): Promise<SelectorEntity[]>;
 }
 

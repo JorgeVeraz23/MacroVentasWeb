@@ -2,7 +2,7 @@ import axiosClient from "../../api/apiClient";
 import { AxiosException } from "../../api/exception";
 
 
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { SelectorEntity } from "data/Entity/KeyValueEntity";
 import { SELECTOR_USUARIO } from "../../url";
 import IUsuarioRepository from "data/repository/UsuarioRepository";
 
@@ -10,12 +10,12 @@ export default class UsuarioRepositoryImpl implements IUsuarioRepository {
 
 
     
-    async selectorUsuario(): Promise<KeyValueEntity[]> {
+    async selectorUsuario(): Promise<SelectorEntity[]> {
         try {
             const response = await axiosClient.get(SELECTOR_USUARIO);
-            const result: KeyValueEntity[] = response.data.map((item: any) => ({
-                Key: item.Key,
-                Value: item.Value,
+            const result: SelectorEntity[] = response.data.map((item: any) => ({
+                value: item.value,
+                label: item.label,
             }));
             return result;
         } catch (error) {

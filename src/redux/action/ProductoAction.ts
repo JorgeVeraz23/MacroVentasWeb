@@ -20,7 +20,7 @@ export const getAllProducto = createAsyncThunk<ShowProductoEntity[], void, {reje
     }
 );
 
-export const selectorProducto = createAsyncThunk<KeyValueEntity[], void, {rejectValue: string}>(
+export const selectorProducto = createAsyncThunk<SelectorEntity[], void, {rejectValue: string}>(
     "producto/SelectorProducto",
     async(data, thunkAPI) => {
         try{

@@ -10,7 +10,7 @@ export const GET_CLIENTEBYID = (idCliente: number) => `${CLIENTE_PREFIX}GetById?
 export const CREATE_CLIENTE = `${CLIENTE_PREFIX}CrearCliente`;
 export const EDIT_CLIENTE = `${CLIENTE_PREFIX}ActualizarCliente`;
 export const DELETE_CLIENTE = (idCliente: number) => `${CLIENTE_PREFIX}EliminarCliente?id=${idCliente}`;
-export const SELECTOR_CLIENTE = `${CLIENTE_PREFIX}`
+export const SELECTOR_CLIENTE = `${CLIENTE_PREFIX}SelectorClientes`
 
 const PRODUCTO_PREFIX = "Producto/";
 export const GETALLPRODUCTOS = `${PRODUCTO_PREFIX}GetAllProductos`;

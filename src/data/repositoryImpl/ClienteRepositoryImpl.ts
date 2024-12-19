@@ -3,10 +3,10 @@ import { AxiosException } from "../../api/exception";
 
 import {  SELECTOR_FORMFIELD } from "../../url/url";
 
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { KeyValueEntity, SelectorEntity } from "data/Entity/KeyValueEntity";
 import IClienteRepository from "../../data/repository/ClienteRepository";
 import { CreateClienteEntity, EditarClienteEntity, ShowClienteEntity } from "data/Entity/ClienteEntity";
-import { CREATE_CLIENTE, DELETE_CLIENTE, EDIT_CLIENTE, GET_CLIENTEBYID, GETALL_CLIENTE } from "../../url";
+import { CREATE_CLIENTE, DELETE_CLIENTE, EDIT_CLIENTE, GET_CLIENTEBYID, GETALL_CLIENTE, SELECTOR_CLIENTE } from "../../url";
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
 
 export default class ClienteRepositoryImpl implements IClienteRepository {
@@ -28,13 +28,15 @@ export default class ClienteRepositoryImpl implements IClienteRepository {
     }
     
     
-    async selectorCliente(): Promise<KeyValueEntity[]> {
+    async selectorCliente(): Promise<SelectorEntity[]> {
         try {
-            const response = await axiosClient.get(SELECTOR_FORMFIELD);
-            const result: KeyValueEntity[] = response.data.map((item: any) => ({
-                Key: item.Key,
-                Value: item.Value,
+            const response = await axiosClient.get(SELECTOR_CLIENTE);
+            const result: SelectorEntity[] = response.data.map((item: any) => ({
+                value: item.value,
+                label: item.label,
             }));
+
+            console.log(":VVV", JSON.stringify(result))
             return result;
         } catch (error) {
             throw new Error(AxiosException(error));

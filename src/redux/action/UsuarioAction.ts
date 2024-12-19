@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { SelectorEntity } from "data/Entity/KeyValueEntity";
 
 import UsuarioRepositoryImpl from "../../data/repositoryImpl/UsuarioRepositoryImpl";
 
@@ -9,7 +9,7 @@ const repository = new UsuarioRepositoryImpl();
 
 
 
-export const selectorUsuario = createAsyncThunk<KeyValueEntity[], void, {rejectValue: string}>(
+export const selectorUsuario = createAsyncThunk<SelectorEntity[], void, {rejectValue: string}>(
     "usuario/SelectorUsuario",
     async(data, thunkAPI) => {
         try{

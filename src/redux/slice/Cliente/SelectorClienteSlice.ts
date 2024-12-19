@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { SelectorEntity } from "data/Entity/KeyValueEntity";
 import { selectorCliente } from "../../action/ClienteAction";
 
 
 export interface initialState {
-    data: KeyValueEntity[] | null;
+    data: SelectorEntity[] | null;
     loading: boolean;
     error: string | null;
 }

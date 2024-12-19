@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// import { selectorCategoria } from "../../action/SelectorAction";
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
-import { selectorUsuario } from "../../action/UsuarioAction";
+import {  SelectorEntity } from "data/Entity/KeyValueEntity";
+import { selectorProducto } from "../../action/ProductoAction";
 
 export interface initialState {
-    data: KeyValueEntity[] | null;
+    data: SelectorEntity[] | null;
     loading: boolean;
     error: string | null;
 }
@@ -28,15 +27,15 @@ export const selectorProductoSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(selectorUsuario.pending, (state) => {
+        .addCase(selectorProducto.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(selectorUsuario.fulfilled, (state, action) => {
+        .addCase(selectorProducto.fulfilled, (state, action) => {
             state.loading = false;
             state.data = action.payload;
         })
-        .addCase(selectorUsuario.rejected, (state, action) => {
+        .addCase(selectorProducto.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload || 'Algo anda mal';
         });

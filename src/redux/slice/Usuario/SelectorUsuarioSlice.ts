@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// import { selectorCategoria } from "../../action/SelectorAction";
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { KeyValueEntity, SelectorEntity } from "data/Entity/KeyValueEntity";
 import { selectorUsuario } from "../../action/UsuarioAction";
 
 export interface initialState {
-    data: KeyValueEntity[] | null;
+    data: SelectorEntity[] | null;
     loading: boolean;
     error: string | null;
 }

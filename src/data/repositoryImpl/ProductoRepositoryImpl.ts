@@ -2,7 +2,7 @@ import axiosClient from "../../api/apiClient";
 import { AxiosException } from "../../api/exception";
 
 
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
+import { KeyValueEntity, SelectorEntity } from "data/Entity/KeyValueEntity";
 // import { CreateClienteEntity, EditarClienteEntity, ShowClienteEntity } from "data/Entity/ClienteEntity";
 import { CREATE_PRODUCTO, DELETE_PRODUCTO, EDIT_PRODUCTO, GETPRODUCTO_BYID, GETALLPRODUCTOS, SELECTOR_PRODUCTO } from "../../url";
 import { CreateProductoEntity, EditarProductoEntity, ShowProductoEntity } from "data/Entity/ProductoEntity";
@@ -30,12 +30,12 @@ export default class ProductoRepositoryImpl implements IProductoRepository {
     }
     
     
-    async selectorProducto(): Promise<KeyValueEntity[]> {
+    async selectorProducto(): Promise<SelectorEntity[]> {
         try {
             const response = await axiosClient.get(SELECTOR_PRODUCTO);
-            const result: KeyValueEntity[] = response.data.map((item: any) => ({
-                Key: item.Key,
-                Value: item.Value,
+            const result: SelectorEntity[] = response.data.map((item: any) => ({
+                value: item.value,
+                label: item.label,
             }));
             return result;
         } catch (error) {
