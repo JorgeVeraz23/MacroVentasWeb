@@ -17,7 +17,7 @@ const Footer = () => {
     height: '60px' 
   }}
 >
-      <Typography variant="body2">© 2024 Dynamic Forms App. All rights reserved.</Typography>
+      <Typography variant="body2">© 2024 MacroVentas App. All rights reserved.</Typography>
     </Box>
   );
 };

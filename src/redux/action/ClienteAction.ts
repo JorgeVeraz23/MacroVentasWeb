@@ -4,6 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
 import ClienteRepositoryImpl from "../../data/repositoryImpl/ClienteRepositoryImpl";
 import { CreateClienteEntity, EditarClienteEntity, ShowClienteEntity } from "data/Entity/ClienteEntity";
+import { KeyValueEntity } from "data/Entity/KeyValueEntity";
 
 const repository = new ClienteRepositoryImpl();
 
@@ -12,6 +13,19 @@ export const getAllCliente = createAsyncThunk<ShowClienteEntity[], void, {reject
     async(data, thunkAPI) => {
         try{
             return await repository.getAllCliente();
+        }catch(error){
+            const errorMessage = error instanceof Error ? error.message : "Error desconocido";
+            return thunkAPI.rejectWithValue(errorMessage);
+        }
+    }
+);
+
+
+export const selectorCliente = createAsyncThunk<KeyValueEntity[], void, {rejectValue: string}>(
+    "cliente/SelectorCliente",
+    async(data, thunkAPI) => {
+        try{
+            return await repository.selectorCliente();
         }catch(error){
             const errorMessage = error instanceof Error ? error.message : "Error desconocido";
             return thunkAPI.rejectWithValue(errorMessage);

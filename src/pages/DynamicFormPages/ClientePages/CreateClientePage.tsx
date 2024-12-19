@@ -61,12 +61,13 @@ const CreateClientePage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (CreateClienteState.loading) {
+    if (CreateClienteState?.loading === true) {
         showAlertAsync({
             title: 'Cargando',
             icon: 'info',
             html: CreateClienteState.loading ? "Cargando..." : "Error",
         });
+         dispatch(createClienteSlice.actions.resetState());
     } else if (CreateClienteState.error) {
         showAlertAsync({
             title: 'Error',
@@ -74,11 +75,11 @@ const CreateClientePage: React.FC = () => {
             html: CreateClienteState.error,
         });
         dispatch(createClienteSlice.actions.resetState());
-    } else if (CreateClienteState.data) {
+    } else if (CreateClienteState.data.success === true) {
         showAlertAsync({
             title: 'Éxito',
             icon: 'success',
-            html: CreateClienteState.data.message,
+            html: CreateClienteState?.data?.message,
         }).then(() => {
             resetForm();
             dispatch(createClienteSlice.actions.resetState());
@@ -214,7 +215,7 @@ return (
               }}
             >
               <Button
-                onClick={() => navigate("/private/Motivos")}
+                onClick={() => navigate("/mostrar-client")}
                 variant="outlined"
                 color="primary"
                 sx={{

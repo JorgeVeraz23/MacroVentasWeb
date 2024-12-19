@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { createProducto } from "redux/action/ProductoAction";
+import { createProducto } from "../../action/ProductoAction";
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
 
 export interface initialStateSlice {

@@ -17,6 +17,9 @@ import FormResponsesDisplay from '../pages/DynamicFormPages/FormResponsePage'
 import FilledFormSelector from '../pages/DynamicFormPages/FilledFormSelectorPage';
 import CreateClientePage from '../pages/DynamicFormPages/ClientePages/CreateClientePage'
 import MostrarClientePage from "../pages/DynamicFormPages/ClientePages/MostrarClientePage"
+import CreateProductoPage from "../pages/DynamicFormPages/ProductoPages/CreateProductoPage";
+import MostrarProductoPage from "../pages/DynamicFormPages/ProductoPages/MostrarProductoPage"
+import CrearVentaPage from "../pages/DynamicFormPages/VentaPages/CrearVentaPages"
 
 const AppRoutes = () => {
   return (
@@ -33,6 +36,9 @@ const AppRoutes = () => {
           <Route path='create-form-field' element={<CreateFormFieldPage />} />
           <Route path='create-client' element={<CreateClientePage />} />
           <Route path='mostrar-client' element={<MostrarClientePage />} />
+          <Route path='create-product' element={<CreateProductoPage />} />
+          <Route path='mostrar-product' element={<MostrarProductoPage />} />
+          <Route path='create-venta' element={<CrearVentaPage />} />
         </Route>
       </Routes>
     </Router>

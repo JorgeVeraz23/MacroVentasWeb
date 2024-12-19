@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getProductoById } from "../../action/ProductoAction";
-import { EditarProductoEntity } from "data/Entity/ProductoEntity";
+import { getAllProducto } from "../../action/ProductoAction";
+import { ShowProductoEntity } from "data/Entity/ProductoEntity";
 
-export interface initialStateSlice {
-    data: EditarProductoEntity | null;
+export interface initialState {
+    data: ShowProductoEntity[] | null;
     loading: boolean;
     error: string | null;
 }
 
-const initialState: initialStateSlice = {
+const initialState: initialState = {
     data: null,
     error: null,
     loading: false
 }
 
-export const getProductoSlice = createSlice({
-    name: 'GetProductoSlice',
+export const getAllProductoSlice = createSlice({
+    name: 'GetAllProductoSlice',
     initialState: initialState,
     reducers: {
         resetState: (state) => {
@@ -27,20 +27,19 @@ export const getProductoSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(getProductoById.pending, (state) => {
+        .addCase(getAllProducto.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(getProductoById.fulfilled, (state, action) => {
+        .addCase(getAllProducto.fulfilled, (state, action) => {
             state.loading = false;
             state.data = action.payload;
         })
-        .addCase(getProductoById.rejected, (state, action) => {
+        .addCase(getAllProducto.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload || 'Something went wrong';
+            state.error = action.payload || 'Algo anda mal';
         });
     },
 })
 
-export default getProductoSlice.reducer;
-
+export default getAllProductoSlice.reducer;

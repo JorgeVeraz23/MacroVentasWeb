@@ -21,6 +21,7 @@ export default class ProductoRepositoryImpl implements IProductoRepository {
                 stock: item.stock,
                 precio : item.precio,
                 idCategoriaProducto: item.idCategoriaProducto,
+                nombreCategoriaProducto: item.nombreCategoriaProducto,
             }));
             return result;
         } catch (error) {

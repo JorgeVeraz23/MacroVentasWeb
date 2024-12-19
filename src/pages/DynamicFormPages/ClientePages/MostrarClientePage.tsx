@@ -115,7 +115,7 @@ const MostrarClientePage: React.FC = () => {
 
         
   useEffect(() => {
-    if (eliminarClienteState?.data) {
+    if (eliminarClienteState?.data.success === true) {
       showAlertAsync({
         title: 'Éxito',
         icon: 'success',

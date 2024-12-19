@@ -17,5 +17,6 @@ export type ShowProductoEntity = {
     stock: number,
     precio: number,
     idCategoriaProducto: number,
+    nombreCategoriaProducto: number,
 }
 

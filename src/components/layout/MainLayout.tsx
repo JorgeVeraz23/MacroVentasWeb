@@ -11,7 +11,8 @@ import TableRowsIcon from '@mui/icons-material/TableRows';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const drawerWidth = 240;
 const MainLayout = () => {
@@ -25,40 +26,10 @@ const MainLayout = () => {
   const drawer = (
     <div>
             <Toolbar>
-        <h4 style={{ width: '50%',textAlign: 'center' }}>DynamicFormsApp</h4>
+        <h4 style={{ width: '50%',textAlign: 'center' }}>MacroVentas</h4>
       </Toolbar>
 
       <List>
-        <ListItemButton onClick={() => navigate('/form-page')}>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary="Formularios" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate('/filled-form-page')}>
-          <ListItemIcon>
-            <CheckCircleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Formularios Llenos" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate('/create-form-page')}>
-          <ListItemIcon>
-            <AddIcon />
-          </ListItemIcon>
-          <ListItemText primary="Crear Formularios" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate('/create-form-group')}>
-          <ListItemIcon>
-            <TableRowsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Crear Grupo Formularios" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate('/create-form-field')}>
-          <ListItemIcon>
-            <TextFieldsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Crear Campo" />
-        </ListItemButton>
         <ListItemButton onClick={() => navigate('/create-client')}>
           <ListItemIcon>
             <SupportAgentIcon />
@@ -71,6 +42,25 @@ const MainLayout = () => {
           </ListItemIcon>
           <ListItemText primary="Mostrar Cliente" />
         </ListItemButton>
+        <ListItemButton onClick={() => navigate('/create-product')}>
+          <ListItemIcon>
+            <LocalGroceryStoreIcon />
+          </ListItemIcon>
+          <ListItemText primary="Crear Producto" />
+        </ListItemButton>
+        <ListItemButton onClick={() => navigate('/mostrar-product')}>
+          <ListItemIcon>
+            <LocalGroceryStoreIcon />
+          </ListItemIcon>
+          <ListItemText primary="Mostrar Producto" />
+        </ListItemButton>
+        <ListItemButton onClick={() => navigate('/create-venta')}>
+          <ListItemIcon>
+            <AttachMoneyIcon />
+          </ListItemIcon>
+          <ListItemText primary="Crear Venta" />
+        </ListItemButton>
+        
       </List>
     </div>
   );

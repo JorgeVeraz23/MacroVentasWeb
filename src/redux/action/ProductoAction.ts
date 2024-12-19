@@ -2,11 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
-// import ClienteRepositoryImpl from "../../data/repositoryImpl/ClienteRepositoryImpl";
-// import { CreateClienteEntity, EditarClienteEntity, ShowClienteEntity } from "data/Entity/ClienteEntity";
-
-import ProductoRepositoryImpl from "data/repositoryImpl/ProductoRepositoryImpl";
+import ProductoRepositoryImpl from "../../data/repositoryImpl/ProductoRepositoryImpl";
 import { CreateProductoEntity, EditarProductoEntity, ShowProductoEntity } from "data/Entity/ProductoEntity";
+import { KeyValueEntity, SelectorEntity } from "data/Entity/KeyValueEntity";
 
 const repository = new ProductoRepositoryImpl();
 
@@ -21,6 +19,20 @@ export const getAllProducto = createAsyncThunk<ShowProductoEntity[], void, {reje
         }
     }
 );
+
+export const selectorProducto = createAsyncThunk<KeyValueEntity[], void, {rejectValue: string}>(
+    "producto/SelectorProducto",
+    async(data, thunkAPI) => {
+        try{
+            return await repository.selectorProducto();
+        }catch(error){
+            const errorMessage = error instanceof Error ? error.message : "Error desconocido";
+            return thunkAPI.rejectWithValue(errorMessage);
+        }
+    }
+);
+
+
 
 export const getProductoById = createAsyncThunk<EditarProductoEntity, number, {rejectValue: string}>(
     "producto/GetProductoById",

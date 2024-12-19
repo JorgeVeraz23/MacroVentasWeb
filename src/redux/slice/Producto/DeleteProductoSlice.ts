@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-import { deleteProducto } from "redux/action/ProductoAction";
+import { deleteProducto } from "../../action/ProductoAction";
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
 
 export interface initialStateSlice {

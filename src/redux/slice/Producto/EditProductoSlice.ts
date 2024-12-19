@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { ApiResponse } from "data/Entity/ApiResponseEntity";
 
-import { editProducto } from "redux/action/ProductoAction";
+import { editProducto } from "../../action/ProductoAction";
 
 
 export interface initialStateSlice {

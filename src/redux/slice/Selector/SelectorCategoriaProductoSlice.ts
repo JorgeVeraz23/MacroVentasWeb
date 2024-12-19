@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getAllProducto } from "redux/action/ProductoAction";
-import { ShowProductoEntity } from "data/Entity/ProductoEntity";
+import { selectorCategoria } from "../../action/SelectorAction";
+import { SelectorEntity } from "data/Entity/KeyValueEntity";
 
 export interface initialState {
-    data: ShowProductoEntity[] | null;
+    data: SelectorEntity[] | null;
     loading: boolean;
     error: string | null;
 }
@@ -15,8 +15,8 @@ const initialState: initialState = {
     loading: false
 }
 
-export const getAllProductoSlice = createSlice({
-    name: 'GetAllProductoSlice',
+export const selectorCategoriaProductoSlice = createSlice({
+    name: 'SelectorCategoriaProductoSlice',
     initialState: initialState,
     reducers: {
         resetState: (state) => {
@@ -27,19 +27,19 @@ export const getAllProductoSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(getAllProducto.pending, (state) => {
+        .addCase(selectorCategoria.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(getAllProducto.fulfilled, (state, action) => {
+        .addCase(selectorCategoria.fulfilled, (state, action) => {
             state.loading = false;
             state.data = action.payload;
         })
-        .addCase(getAllProducto.rejected, (state, action) => {
+        .addCase(selectorCategoria.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload || 'Algo anda mal';
         });
     },
 })
 
-export default getAllProductoSlice.reducer;
+export default selectorCategoriaProductoSlice.reducer;

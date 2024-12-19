@@ -7,10 +7,10 @@ const Home = () => {
       <Card sx={{ width: '100%', maxWidth: 600, textAlign: 'center' }}>
         <CardContent>
           <Typography variant="h4" gutterBottom>
-            Bienvenido a la aplicación Dynamic Forms
+            Bienvenido a la MacroVentas
           </Typography>
           <Typography variant="body1" paragraph>
-          Esta aplicación te permite crear, editar y gestionar formularios de manera dinámica para diferentes propósitos. Puedes crear formularios para personas, mascotas y mucho más, con nuestra interfaz intuitiva.
+          Esta aplicacion te permite Gestionar las ventas de un laboratorio de macrobiota
           </Typography>
           <Button variant="contained" color="primary" href="/form-page">
             Ver Formularios

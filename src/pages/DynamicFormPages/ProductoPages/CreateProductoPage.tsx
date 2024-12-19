@@ -20,97 +20,114 @@ import {
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "redux/store";
-import { createFormFieldAction } from "../../../redux/action/FormFieldAction";
-import Swal from "sweetalert2";
-import Autocomplete from '@mui/material/Autocomplete';
-import { FormFieldEntity } from "data/Entity/FormFieldEntity";
-import { KeyValueEntity } from "data/Entity/KeyValueEntity";
-import { getFileTypeSelectorAction } from "../../../redux/action/FieldTypeAction";
-import { getFormGroupSelectorAction } from "../../../redux/action/FormGroupAction";
-import { useAppSelector } from "../../../redux/hooksRedux";
-import { createCliente } from "../../../redux/action/ClienteAction";
+import { AppDispatch } from "redux/store";
 
+import { useAppDispatch, useAppSelector } from "../../../redux/hooksRedux";
 
-import { CreateClienteEntity } from "data/Entity/ClienteEntity";
 import { showAlertAsync } from "../../../components/CustomAlert";
 import { createClienteSlice } from "../../../redux/slice/Cliente/CreateClienteSlice";
 import CustomInput from "../../../components/CustomInput";
 import { useNavigate } from "react-router-dom";
+import { CreateProductoEntity } from "data/Entity/ProductoEntity";
+import { createProducto } from "../../../redux/action/ProductoAction";
+import CustomSelect from "../../../components/CustomSelect";
 
-const CreateClientePage: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+import { selectorCategoria } from "../../../redux/action/SelectorAction";
+import { createProductoSlice } from "../../../redux/slice/Producto/CreateProductoSlice";
+
+const CreateProductoPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [dropdownOptions, setDropdownOptions] = useState<{ idOption: number, name: string }[]>([]);
-  const [newOption, setNewOption] = useState<string>("");
 
 
-  const [error, setError] = useState(false);
 
-  const { formFields, loading } = useSelector((state: RootState) => state.formField);
 
-  const CreateClienteState = useAppSelector(state => state.createCliente);
-
-  const [createClienteData, setCreateClienteData] = useState<CreateClienteEntity>({
-     nombreCliente: '',
-     cedula: '',
-     telefono: '',
-     direccion: '', 
+  const [optionCategoriaProductoSelected, setOptionCategoriaProductoSelected] = useState<{ value: string, label: string }>({
+    value: '', label: ''
   });
 
+
+  const CreateProductoState = useAppSelector(state => state.createProducto);
+  const SelectorCategoriaProducto = useAppSelector(state => state.selectorCategoriaProducto)
+
+  const [createProductoData, setCreateProductoData] = useState<CreateProductoEntity>({
+    nombreProducto: '',
+    codigoProducto: 0,
+    stock: 0,
+    precio: 0,
+    idCategoriaProducto: 0
+  });
+
+
   useEffect(() => {
-    if (CreateClienteState.loading) {
+    init();
+  }, [])
+
+  const init = async () => {
+    await dispatch(selectorCategoria())
+  }
+
+  useEffect(() => {
+
+    if (CreateProductoState?.loading === true) {
         showAlertAsync({
             title: 'Cargando',
             icon: 'info',
-            html: CreateClienteState.loading ? "Cargando..." : "Error",
+            html: CreateProductoState?.loading ? "Cargando..." : "Error",
         });
-    } else if (CreateClienteState.error) {
+    } else if (CreateProductoState.error) {
         showAlertAsync({
             title: 'Error',
             icon: 'error',
-            html: CreateClienteState.error,
+            html: CreateProductoState?.error,
         });
-        dispatch(createClienteSlice.actions.resetState());
-    } else if (CreateClienteState.data) {
+        dispatch(createProductoSlice?.actions.resetState());
+    } else if (CreateProductoState?.data?.success === true) {
         showAlertAsync({
             title: 'Éxito',
             icon: 'success',
-            html: CreateClienteState.data.message,
+            html: CreateProductoState?.data?.message,
         }).then(() => {
             resetForm();
-            dispatch(createClienteSlice.actions.resetState());
+            dispatch(createProductoSlice?.actions?.resetState());
         });
     }
-}, [CreateClienteState, dispatch]);
+}, [CreateProductoState, dispatch]);
 
 
 const resetForm = () => {
-    setCreateClienteData({
-        nombreCliente: '',
-        cedula: '',
-        telefono: '',
-        direccion: '', 
+    setCreateProductoData({
+      nombreProducto: '',
+      codigoProducto: 0,
+      stock: 0,
+      precio: 0,
+      idCategoriaProducto: 0
     });
+   setOptionCategoriaProductoSelected({value: '', label: ''})
 };
 
+  const handleSetData = (value: string, field: keyof CreateProductoEntity) => {
+    setCreateProductoData((prevData) => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
 
 
-
-const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: keyof CreateClienteEntity) => {
-    setCreateClienteData((prevData) => ({
+const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: keyof CreateProductoEntity) => {
+    setCreateProductoData((prevData) => ({
         ...prevData,
         [field]: event.target.value,
     }));
 };
 
 const createRegister = () => {
-    if (createClienteData.nombreCliente === '' ||
-        createClienteData.cedula === '',
-        createClienteData.direccion === '',
-        createClienteData.telefono === ''
+    if (createProductoData.nombreProducto === '' ||
+      createProductoData.codigoProducto === 0,
+      createProductoData.stock === 0,
+      createProductoData.precio === 0,
+      createProductoData.idCategoriaProducto <= 0
     ) {
         showAlertAsync({
             title: 'Error',
@@ -118,11 +135,18 @@ const createRegister = () => {
             html: 'Todos los campos son obligatorios',
         });
 
-        console.log(createClienteData)
+        console.log(createProductoData)
         return;
     }
-    dispatch(createCliente(createClienteData));
+    dispatch(createProducto(createProductoData));
 };
+
+
+const handleCategoriaProductoSelectChange = (option: { value: string, label: string }) => {
+  setOptionCategoriaProductoSelected(option);
+  handleSetData(option.value, 'idCategoriaProducto');
+}
+
 
 
 
@@ -131,7 +155,7 @@ return (
     <Container sx={{ marginTop: "20px" }}>
       <Paper elevation={3} style={{ padding: 20 }}>
         <Typography variant="h5" component="h2" gutterBottom>
-          Crear Campo de Formulario
+          Crear Producto
         </Typography>
   
         <Grid container spacing={2}>
@@ -146,9 +170,9 @@ return (
               Nombre
             </Typography>
             <CustomInput
-              placeholder="Ingrese el nombre del cliente"
-              value={createClienteData.nombreCliente}
-              onChange={(event) => handleInputChange(event, "nombreCliente")}
+              placeholder="Ingrese el nombre del producto"
+              value={createProductoData.nombreProducto}
+              onChange={(event) => handleInputChange(event, "nombreProducto")}
             />
           </Grid>
   
@@ -160,12 +184,12 @@ return (
               color="text.secondary"
               gutterBottom
             >
-              Cedula
+              Codigo Producto
             </Typography>
             <CustomInput
               placeholder="Ingrese el nombre de la cedula"
-              value={createClienteData.cedula}
-              onChange={(event) => handleInputChange(event, "cedula")}
+              value={createProductoData.codigoProducto}
+              onChange={(event) => handleInputChange(event, "codigoProducto")}
             />
           </Grid>
   
@@ -177,12 +201,12 @@ return (
               color="text.secondary"
               gutterBottom
             >
-              Dirección
+              Precio
             </Typography>
             <CustomInput
               placeholder="Ingrese el nombre de la direccion"
-              value={createClienteData.direccion}
-              onChange={(event) => handleInputChange(event, "direccion")}
+              value={createProductoData.precio}
+              onChange={(event) => handleInputChange(event, "precio")}
             />
           </Grid>
   
@@ -194,13 +218,31 @@ return (
               color="text.secondary"
               gutterBottom
             >
-              Telefono
+              Stock
             </Typography>
             <CustomInput
               placeholder="Ingrese el telefono del cliente"
-              value={createClienteData.telefono}
-              onChange={(event) => handleInputChange(event, "telefono")}
+              value={createProductoData.stock}
+              onChange={(event) => handleInputChange(event, "stock")}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="subtitle1"
+              fontWeight="bold"
+              color="text.secondary"
+              gutterBottom
+            >
+              Categoria
+            </Typography>
+            <CustomSelect
+                                onChange={(option: { value: string, label: string }) => handleCategoriaProductoSelectChange(option)}
+                                
+                                value={optionCategoriaProductoSelected}
+                                placeholder='Seleccione una categoria'
+                                isRequired={true}
+                                options={SelectorCategoriaProducto.data}
+                              />
           </Grid>
   
           {/* Acciones */}
@@ -214,7 +256,7 @@ return (
               }}
             >
               <Button
-                onClick={() => navigate("/private/Motivos")}
+                onClick={() => navigate("/mostrar-product")}
                 variant="outlined"
                 color="primary"
                 sx={{
@@ -228,10 +270,10 @@ return (
                   },
                 }}
               >
-                Mostrar Clientes
+                Mostrar Productos
               </Button>
               <Button
-                onClick={CreateClienteState.loading ? undefined : createRegister}
+                onClick={CreateProductoState.loading ? undefined : createRegister}
                 variant="contained"
                 sx={{
                   backgroundColor: "#004080",
@@ -241,14 +283,14 @@ return (
                   width: 150,
                   "&:hover": { backgroundColor: "#003366" },
                 }}
-                disabled={CreateClienteState.loading}
+                disabled={CreateProductoState.loading}
                 endIcon={
-                  CreateClienteState.loading && (
+                  CreateProductoState.loading && (
                     <CircularProgress size={20} color="inherit" />
                   )
                 }
               >
-                {CreateClienteState.loading ? "Guardando..." : "Guardar"}
+                {CreateProductoState.loading ? "Guardando..." : "Guardar"}
               </Button>
             </CardActions>
           </Grid>
@@ -258,4 +300,4 @@ return (
   );
 };
 
-export default CreateClientePage;
+export default CreateProductoPage;

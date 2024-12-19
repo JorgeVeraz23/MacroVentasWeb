@@ -26,7 +26,7 @@ const Header = ({ handleDrawerToggle, drawerWidth }: { handleDrawerToggle: () =>
       <MenuIcon />
     </IconButton>
     <Typography variant="h6" noWrap component="div" sx={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-      Dynamic Forms App
+      Macro Ventas
     </Typography>
   </Toolbar>
 </AppBar>

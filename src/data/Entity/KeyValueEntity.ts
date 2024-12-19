@@ -3,4 +3,10 @@ export type KeyValueEntity = {
     value: string,
 }
 
+export type SelectorEntity = {
+    value: string,
+    label: string,
+}
+
+
 

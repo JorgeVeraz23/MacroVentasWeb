@@ -13,14 +13,22 @@ import GetClienteReducer from "./slice/Cliente/GetClienteByIdSlice";
 import DeleteClienteReducer from "./slice/Cliente/DeleteClienteSlice";
 import EditClienteReducer from "./slice/Cliente/EditClienteSlice";
 import CreateClienteReducer from "./slice/Cliente/CreateClienteSlice";
+import SelectorClienteReducer from "./slice/Cliente/SelectorClienteSlice";
 
 
 //Producto Reducer
-import GetAllProductoReducer from "./slice/Cliente/ShowClienteSlice";
+import GetAllProductoReducer from "./slice/Producto/ShowProductoSlice";
 import GetProductoReducer from "./slice/Producto/GetProductoByIdSlice";
 import DeleteProductoReducer from "./slice/Producto/DeleteProductoSlice";
 import EditProductoReducer from "./slice/Producto/EditProductoSlice";
 import CreateProductoReducer from "./slice/Producto/CreateProductoSlice";
+import SelectorProductoReducer from "./slice/Producto/SelectorProductoSlice";
+
+//Categoria Producto
+import SelectorCategoriaProductoReducer from "./slice/Selector/SelectorCategoriaProductoSlice";
+
+//Usuario
+import SelectorUsuarioReducer from "./slice/Usuario/SelectorUsuarioSlice";
 
 
 export const store = configureStore({
@@ -35,11 +43,15 @@ export const store = configureStore({
         deleteCliente: DeleteClienteReducer,
         getAllCliente: GetAllClienteReducer,
         getCliente: GetClienteReducer,
+        selectorCliente: SelectorClienteReducer,
         createProducto: CreateProductoReducer,
         editProducto: EditProductoReducer,
         deleteProducto: DeleteProductoReducer,
         getProducto: GetProductoReducer,
         getAllProductos: GetAllProductoReducer,
+        selectorProducto: SelectorProductoReducer,
+        selectorCategoriaProducto: SelectorCategoriaProductoReducer,
+        selectorUsuario: SelectorUsuarioReducer,
     },
 });
 
